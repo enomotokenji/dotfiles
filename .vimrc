@@ -48,8 +48,6 @@ set whichwrap=b,s,h,l,<,>,[,]
 
 set clipboard=unnamed,autoselect
 
-set completion-ignore-case on
-
 let g:neocomplete#enable_at_startup = 1
 
 autocmd FileType python setl autoindent
