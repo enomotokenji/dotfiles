@@ -16,12 +16,16 @@ call dein#begin(s:dein_dir)
 
 " dein自体をdeinで管理
 call dein#add('Shougo/dein.vim')
-" 
+" vimを閉じずにファイル操作
 call dein#add('scrooloose/nerdtree')
-
+" 自動補完 luaが有効になってないと使えない
 call dein#add('Shougo/neocomplete.vim')
-
+" 自動で括弧閉じ
 call dein#add('Townk/vim-autoclose')
+
+call dein#add('kannokanno/previm')
+
+call dein#add('tyru/open-browser.vim')
 
 call dein#end()
 
