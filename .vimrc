@@ -62,3 +62,7 @@ noremap ; :
 noremap : ;
 
 nnoremap <C-e> :NERDTree<CR>
+
+" neocompleteの補完候補をTabで選択できるようにする
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
