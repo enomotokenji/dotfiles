@@ -16,3 +16,5 @@ make all -> make deploy init を実行
 * vim-autoclose
 
 neocompleteはvimでluaを有効にしないと使えない
+
+# aaaa
