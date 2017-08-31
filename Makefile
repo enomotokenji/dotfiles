@@ -10,4 +10,4 @@ deploy:
 	ln -sf ~/dotfiles/colors ~/.vim
 
 init:
-	@$(foreach val, $(wildcard ./init/*.sh), sh $(val);)
+	@$(foreach val, $(wildcard ./initfiles/*.sh), sh $(val);)
