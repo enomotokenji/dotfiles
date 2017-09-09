@@ -7,7 +7,9 @@ all: deploy init ## Run make deploy init
 
 deploy:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
-	ln -sf ~/dotfiles/colors/solarized.vim ~/.vim/colors/solarized.vim
+	ln -sf ~/dotfiles/vim/colors/solarized.vim ~/.vim/colors/solarized.vim
+	ln -sf ~/dotfiles/vim/rc/dein.toml ~/.vim/rc/dein.toml
+	ln -sf ~/dotfiles/vim/rc/dein_lazy.toml ~/.vim/rc/dein_lazy.toml
 
 init:
 	@$(foreach val, $(wildcard ./initfiles/*.sh), sh $(val);)
