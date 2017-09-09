@@ -1,0 +1,17 @@
+# インサートモードに入ったら読み込む
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+hook_add = '''
+    let g:neocomplete#enable_at_startup = 1
+'''
+on_i = 1
+
+# [[plugins]]
+# repo = 'Shougo/neosnippet'
+# depends = ['neosnippet-snippets']
+# on_i = 1
+# on_ft = ['snippet']
+
+#[[plugins]]
+#repo = 'davidhalter/jedi-vim'
+#on_ft = 'python'
