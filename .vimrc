@@ -12,22 +12,23 @@ endif
 " bundleで管理するディレクトリを指定
 execute 'set runtimepath^=' . s:dein_repo_dir
 
-call dein#begin(s:dein_dir)
+if dein#load_state(s:dein_dir)
+	call dein#begin(s:dein_dir)
+	
+	" プラグインリストを収めた TOML ファイル
+	" 予め TOML ファイル（後述）を用意しておく
+	let g:rc_dir    = expand('~/.vim/rc')
+	let s:toml      = g:rc_dir . '/dein.toml'
+	let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+	
+	" TOML を読み込み、キャッシュしておく
+    call dein#load_toml(s:toml,      {'lazy': 0})
+    call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-" dein自体をdeinで管理
-call dein#add('Shougo/dein.vim')
-" vimを閉じずにファイル操作
-call dein#add('scrooloose/nerdtree')
-" 自動補完 luaが有効になってないと使えない
-call dein#add('Shougo/neocomplete.vim')
-" 自動で括弧閉じ
-call dein#add('Townk/vim-autoclose')
-
-call dein#add('kannokanno/previm')
-
-call dein#add('tyru/open-browser.vim')
-
-call dein#end()
+	" 設定終了
+    call dein#end()
+    call dein#save_state()
+endif
 
 if dein#check_install()
     call dein#install()
@@ -41,9 +42,9 @@ filetype plugin indent on
 
 set tabstop=4
 
-syntax enable
 set background=dark
 colorscheme solarized
+syntax on
 
 " バックスペースで削除できるものを指定
 set backspace=indent,eol,start
@@ -51,8 +52,6 @@ set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 
 set clipboard=unnamed,autoselect
-
-let g:neocomplete#enable_at_startup = 1
 
 autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
@@ -66,6 +65,16 @@ nnoremap <C-e> :NERDTree<CR>
 " neocompleteの補完候補をTabで選択できるようにする
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-" 補完時に表示されるプレビューを非表示にする
-set completeopt=menuone
+
+" インサートモードでもコマンドで移動できるようにする
+inoremap <C-j>  <down>
+inoremap <C-k>  <up>
+inoremap <C-h>  <left>
+inoremap <C-l>  <right>
+
+
+" set completeopt-=noinsert
+
+
+
 
