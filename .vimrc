@@ -5,7 +5,6 @@ if &compatible
     set nocompatible
 endif
 
-
 "--------------------------
 " Start Dein Settings.
 "--------------------------
@@ -72,6 +71,7 @@ inoremap <C-k>  <up>
 inoremap <C-h>  <left>
 inoremap <C-l>  <right>
 
+set completeopt=menuone
 
 " set completeopt-=noinsert
 
