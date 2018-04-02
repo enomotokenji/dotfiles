@@ -22,7 +22,7 @@ cd ~/.local/src
 wget http://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
 tar xvf vim-7.4.tar.bz2
 cd vim74
-./configure --prefix=${HOME}/.local --with-features=huge --enable-gui=gtk2 --enable-multibyte=yes --enabel-python3interp=yes --enable-luainterp=yes --with-lua-prefix=${HOME}/.local
+./configure --prefix=${HOME}/.local --with-features=huge --enable-gui=gtk2 --enable-multibyte=yes --enable-python3interp=yes --enable-luainterp=yes --with-lua-prefix=${HOME}/.local
 
 make
 make install
