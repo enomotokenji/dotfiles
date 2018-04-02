@@ -13,3 +13,10 @@ deploy:
 
 init:
 	@$(foreach val, $(wildcard ./initfiles/*.sh), sh $(val);)
+
+clean:
+	@$(foreach val, $(DOTFILES_FILES), unlink $(HOME)/$(val);)
+	unlink ~/.vim/colors/solarized.vim
+	unlink ~/.vim/rc/dein.toml
+	unlink ~/.vim/rc/dein_lazy.toml
+	rm -rf ~/.local/
