@@ -1,1 +1,1 @@
-ubuntu用
+vimのインストールはubuntu用
