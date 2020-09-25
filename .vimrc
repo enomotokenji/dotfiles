@@ -9,29 +9,29 @@ endif
 " Start Dein Settings.
 "--------------------------
 " bundleで管理するディレクトリを指定
-execute 'set runtimepath^=' . s:dein_repo_dir
+"execute 'set runtimepath^=' . s:dein_repo_dir
 
-if dein#load_state(s:dein_dir)
-	call dein#begin(s:dein_dir)
+"if dein#load_state(s:dein_dir)
+"	call dein#begin(s:dein_dir)
 	
 	" プラグインリストを収めた TOML ファイル
 	" 予め TOML ファイル（後述）を用意しておく
-	let g:rc_dir    = expand('~/.vim/rc')
-	let s:toml      = g:rc_dir . '/dein.toml'
-	let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+	"let g:rc_dir    = expand('~/.vim/rc')
+	"let s:toml      = g:rc_dir . '/dein.toml'
+	"let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 	
 	" TOML を読み込み、キャッシュしておく
-    call dein#load_toml(s:toml,      {'lazy': 0})
-    call dein#load_toml(s:lazy_toml, {'lazy': 1})
+    "call dein#load_toml(s:toml,      {'lazy': 0})
+    "call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
 	" 設定終了
-    call dein#end()
-    call dein#save_state()
-endif
+    "call dein#end()
+    "call dein#save_state()
+"endif
 
-if dein#check_install()
-    call dein#install()
-endif
+"if dein#check_install()
+"    call dein#install()
+"endif
 
 filetype plugin indent on
 
@@ -42,7 +42,7 @@ filetype plugin indent on
 set tabstop=4
 
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 syntax on
 
 " バックスペースで削除できるものを指定
