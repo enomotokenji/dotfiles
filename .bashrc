@@ -23,6 +23,17 @@ if [ -x /usr/bin/dircolors ]; then
 	alias grep='grep --color=auto'
 	alias fgrep='fgrep --color=auto'
 	alias egrep='egrep --color=auto'
+else
+	export LSCOLORS=exfxcxdxbxegedabagacad
+	alias ls='ls -FG'
 fi
 
 alias tma='tmux a -t'
+#alias blender='/Applications/Blender/blender.app/Contents/MacOS/blender --background --python'
+alias g='git branch; git status'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/enomotokenji/google-cloud-sdk/path.bash.inc' ]; then . '/Users/enomotokenji/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/enomotokenji/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/enomotokenji/google-cloud-sdk/completion.bash.inc'; fi
