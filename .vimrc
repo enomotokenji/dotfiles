@@ -150,6 +150,8 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+vnoremap <silent> <C-p> "0p<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers

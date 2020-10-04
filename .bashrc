@@ -32,6 +32,8 @@ alias tma='tmux a -t'
 #alias blender='/Applications/Blender/blender.app/Contents/MacOS/blender --background --python'
 alias g='git branch; git status'
 
+export TERM=xterm-256color
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/enomotokenji/google-cloud-sdk/path.bash.inc' ]; then . '/Users/enomotokenji/google-cloud-sdk/path.bash.inc'; fi
 
