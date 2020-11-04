@@ -4,9 +4,8 @@
 
 set history=500
 
-filetype plugin indent on
-
 set autoread
+set clipboard+=unnamed
 au FocusGained,BufEnter * checktime
 
 let mapleader = ","
@@ -14,6 +13,29 @@ let mapleader = ","
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 
+set nocompatible
+filetype off
+
+"nnoremap O o<Esc>
+nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'mattn/vim-lsp-settings'
+Plugin 'lambdalisue/fern.vim'
+call vundle#end()
+
+filetype plugin indent on
+
+autocmd FileType python map <leader>f :Fern . -drawer -width=50<Cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -166,6 +188,14 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 map <C-r> <C-W>r
+
+" Move cursor by display line
+nnoremap j gj
+nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+nnoremap gj j
+nnoremap gk k
 
 
 """"""""""""""""""""""""""""""

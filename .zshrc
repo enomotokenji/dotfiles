@@ -6,11 +6,6 @@ compinit
 # 大文字小文字を無視
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# promptにgitのbranchを表示するため
-autoload -Uz vcs_info
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '%b'
-
 # keybindをvim風に
 bindkey -v
 
@@ -38,6 +33,13 @@ else
 	alias ls='ls -FG'
 fi
 
+# promptにgitのbranchを表示するため
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b'
+#zstyle ':vcs_info:*' formats '%b'
+
+setopt PROMPT_SUBST
 PROMPT="%F{blue}%n%f:%F{yellow}%~%f:%F{magenta}${vcs_info_msg_0_}%f\$ "
 
 # alias
