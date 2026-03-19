@@ -43,8 +43,10 @@ autocmd FileType python map <leader>f :Fern . -drawer -width=50<Cr>
 set so=7
 let $LANG='en'
 set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
+if has("gui_running")
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+endif
 
 set wildmenu
 

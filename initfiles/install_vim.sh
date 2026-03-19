@@ -7,10 +7,10 @@ mkdir -p ~/.local/src
 # ---
 
 cd ~/.local/src
-wget http://www.lua.org/ftp/lua-5.2.3.tar.gz
-tar xvf lua-5.2.3.tar.gz
-cd ~/.local/src/lua-5.2.3
-make linux MYLIBS="-L /home/vagrant/local/lib -ltermcap"
+wget https://www.lua.org/ftp/lua-5.4.7.tar.gz
+tar xvf lua-5.4.7.tar.gz
+cd ~/.local/src/lua-5.4.7
+make linux MYLIBS="-L ${HOME}/.local/lib -ltermcap"
 make install INSTALL_TOP=${HOME}/.local
 
 
@@ -19,9 +19,9 @@ make install INSTALL_TOP=${HOME}/.local
 # ---
 
 cd ~/.local/src
-wget http://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
-tar xvf vim-7.4.tar.bz2
-cd vim74
+wget https://ftp.vim.org/pub/vim/unix/vim-9.1.tar.bz2
+tar xvf vim-9.1.tar.bz2
+cd vim91
 ./configure --prefix=${HOME}/.local --with-features=huge --enable-gui=gtk2 --enable-multibyte=yes --enable-python3interp=yes --enable-luainterp=yes --with-lua-prefix=${HOME}/.local
 
 make
