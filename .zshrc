@@ -40,7 +40,7 @@ ZSH_THEME="simple"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -71,7 +71,17 @@ ZSH_THEME="simple"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+# Check if oh-my-zsh is installed before sourcing
+if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+    source $ZSH/oh-my-zsh.sh
+else
+    echo "oh-my-zsh not found. Install it with:"
+    echo 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+fi
+
+# Show full directory path in prompt instead of just directory name
+setopt PROMPT_SUBST
+PROMPT='%F{green}%n@%m%f:%F{blue}%~%f$ '
 
 # User configuration
 
@@ -104,3 +114,8 @@ alias m="make"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+. "$HOME/.local/bin/env"
+
+# Added by Antigravity
+export PATH="/Users/enomotokenji/.antigravity/antigravity/bin:$PATH"

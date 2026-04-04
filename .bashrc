@@ -35,7 +35,9 @@ alias g='git branch; git status'
 export TERM=xterm-256color
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
+if [ -f '/Users/enomotokenji/google-cloud-sdk/path.bash.inc' ]; then . '/Users/enomotokenji/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
+if [ -f '/Users/enomotokenji/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/enomotokenji/google-cloud-sdk/completion.bash.inc'; fi
+
+. "$HOME/.local/bin/env"
