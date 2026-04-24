@@ -79,4 +79,43 @@ fi
 ln -sfn "$OH_MY_TMUX_DIR/.tmux.conf" "$tmux_target"
 echo "  linked $tmux_target -> $OH_MY_TMUX_DIR/.tmux.conf"
 
+# 7. Claude Code and Codex CLI config trees. We link each entry under
+#    claude/ and codex/ individually into ~/.claude and ~/.codex so that
+#    runtime state the tools write (projects/, todos/, shell-snapshots/,
+#    ...) stays outside the repo.
+for subtree in claude codex; do
+    src_root="$DOTFILES_DIR/$subtree"
+    dst_root="$HOME/.$subtree"
+    [ -d "$src_root" ] || continue
+    mkdir -p "$dst_root"
+    echo "==> Linking $subtree config into $dst_root"
+    for src in "$src_root"/*; do
+        [ -e "$src" ] || continue
+        name="$(basename "$src")"
+        target="$dst_root/$name"
+        if [ -e "$target" ] && [ ! -L "$target" ]; then
+            echo "  Backing up existing $target -> $target.bak"
+            mv "$target" "$target.bak"
+        fi
+        ln -sfn "$src" "$target"
+        echo "  linked $target -> $src"
+    done
+done
+
+# 8. Shared skills: a single skills/ directory wired into both Claude Code
+#    and Codex, since both honour the Agent Skills SKILL.md format.
+if [ -d "$DOTFILES_DIR/skills" ]; then
+    echo "==> Linking shared skills into Claude and Codex"
+    for dst_root in "$HOME/.claude" "$HOME/.codex"; do
+        mkdir -p "$dst_root"
+        target="$dst_root/skills"
+        if [ -e "$target" ] && [ ! -L "$target" ]; then
+            echo "  Backing up existing $target -> $target.bak"
+            mv "$target" "$target.bak"
+        fi
+        ln -sfn "$DOTFILES_DIR/skills" "$target"
+        echo "  linked $target -> $DOTFILES_DIR/skills"
+    done
+fi
+
 echo "==> Done. Restart your shell to pick up changes."

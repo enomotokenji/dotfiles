@@ -47,7 +47,41 @@ if [ -L "$tmux_target" ] && [ "$(readlink "$tmux_target")" = "$HOME/.tmux/.tmux.
     fi
 fi
 
+# Claude Code and Codex config trees — symmetric to the install step.
+for subtree in claude codex; do
+    src_root="$DOTFILES_DIR/$subtree"
+    dst_root="$HOME/.$subtree"
+    [ -d "$src_root" ] || continue
+    [ -d "$dst_root" ] || continue
+    for src in "$src_root"/*; do
+        [ -e "$src" ] || continue
+        name="$(basename "$src")"
+        target="$dst_root/$name"
+        if [ -L "$target" ] && [ "$(readlink "$target")" = "$src" ]; then
+            rm "$target"
+            echo "  removed $target"
+            if [ -e "$target.bak" ]; then
+                mv "$target.bak" "$target"
+                echo "    restored $target from $target.bak"
+            fi
+        fi
+    done
+done
+
+# Shared skills symlinks in ~/.claude and ~/.codex.
+for dst_root in "$HOME/.claude" "$HOME/.codex"; do
+    target="$dst_root/skills"
+    if [ -L "$target" ] && [ "$(readlink "$target")" = "$DOTFILES_DIR/skills" ]; then
+        rm "$target"
+        echo "  removed $target"
+        if [ -e "$target.bak" ]; then
+            mv "$target.bak" "$target"
+            echo "    restored $target from $target.bak"
+        fi
+    fi
+done
+
 echo "==> Done."
 echo "    oh-my-zsh (~/.oh-my-zsh), oh-my-tmux (~/.tmux), vim, vim-plug"
 echo "    (~/.vim/autoload/plug.vim), and ~/.vim/plugged were left in place."
-echo "    Remove them manually if you want a clean slate."
+echo "    Claude/Codex runtime state (projects/, todos/, ...) was not touched."
