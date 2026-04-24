@@ -24,6 +24,15 @@ dev packages via `apt-get` (prompting for `sudo`). On non-Debian distros,
 install the equivalents (ncurses, lua 5.3, python3 headers, gtk3, libXt) by
 hand before running.
 
+## Update
+
+```bash
+./update.sh
+```
+
+Pulls the dotfiles repo, oh-my-zsh, and oh-my-tmux from their upstreams and
+runs `:PlugUpdate` for vim plugins. Skips anything that is not installed.
+
 ## Uninstall
 
 ```bash
