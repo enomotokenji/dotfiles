@@ -15,12 +15,10 @@ and Vundle (with the plugins declared in `.vimrc`) if they are not already
 present. Any pre-existing regular file at a target path is backed up as
 `*.bak` before the symlink is created. Re-running is safe.
 
-On Linux, install the vim build dependencies before running the script:
-
-```bash
-sudo apt-get install -y git build-essential libncurses-dev \
-  liblua5.3-dev lua5.3 python3-dev libgtk-3-dev libxt-dev
-```
+On Linux the vim build is from source; the script auto-installs the required
+dev packages via `apt-get` (prompting for `sudo`). On non-Debian distros,
+install the equivalents (ncurses, lua 5.3, python3 headers, gtk3, libXt) by
+hand before running.
 
 ## Uninstall
 

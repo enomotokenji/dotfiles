@@ -19,10 +19,22 @@ elif [[ "$UNAME" == "Linux" ]]; then
     # Linux: Build latest Vim from source
     echo "Installing Vim on Linux from source..."
 
-    # Required dev packages (Debian/Ubuntu):
-    #   sudo apt-get install -y git build-essential libncurses-dev \
-    #     liblua5.3-dev lua5.3 python3-dev libgtk-3-dev libxt-dev
-    # On other distros, install the equivalents before running this script.
+    # Build dependencies. apt-get is auto-detected; on other distros install
+    # the equivalents (ncurses, lua 5.3, python3 dev headers, gtk3, libXt) by
+    # hand before running this script.
+    if command -v apt-get >/dev/null 2>&1; then
+        if [ "$(id -u)" -eq 0 ]; then SUDO=""; else SUDO="sudo"; fi
+        echo "==> Installing build dependencies via apt-get (may prompt for sudo)"
+        $SUDO apt-get install -y \
+            git build-essential libncurses-dev \
+            liblua5.3-dev lua5.3 python3-dev libgtk-3-dev libxt-dev
+    else
+        echo "WARNING: apt-get not found. Install these with your package manager first:"
+        echo "  git, build tools, libncurses-dev, liblua5.3-dev, lua5.3,"
+        echo "  python3-dev, libgtk-3-dev, libxt-dev"
+        echo "Continuing in 5s — press Ctrl-C to abort."
+        sleep 5
+    fi
 
     SRC_DIR="$HOME/.local/src"
     mkdir -p "$SRC_DIR"
