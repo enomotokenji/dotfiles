@@ -1,0 +1,8 @@
+# Local overrides for oh-my-tmux.
+#
+# Sourced by ~/.tmux.conf (which is a symlink to ~/.tmux/.tmux.conf, the
+# upstream gpakosz/.tmux configuration). See
+# https://github.com/gpakosz/.tmux/blob/master/.tmux.conf.local for the full
+# set of customisable options.
+#
+# Add any personal tweaks below.

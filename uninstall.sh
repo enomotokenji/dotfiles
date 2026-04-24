@@ -35,6 +35,18 @@ if [ -L "$iceberg" ] && [ "$(readlink "$iceberg")" = "$DOTFILES_DIR/vim/colors/i
     echo "  removed $iceberg"
 fi
 
+# ~/.tmux.conf points at the oh-my-tmux clone, not at this repo, so the loop
+# above does not catch it.
+tmux_target="$HOME/.tmux.conf"
+if [ -L "$tmux_target" ] && [ "$(readlink "$tmux_target")" = "$HOME/.tmux/.tmux.conf" ]; then
+    rm "$tmux_target"
+    echo "  removed $tmux_target"
+    if [ -e "$tmux_target.bak" ]; then
+        mv "$tmux_target.bak" "$tmux_target"
+        echo "    restored $tmux_target from $tmux_target.bak"
+    fi
+fi
+
 echo "==> Done."
-echo "    oh-my-zsh (~/.oh-my-zsh), vim, and ~/.vim/bundle were left in place."
-echo "    Remove them manually if you want a clean slate."
+echo "    oh-my-zsh (~/.oh-my-zsh), oh-my-tmux (~/.tmux), vim, and ~/.vim/bundle"
+echo "    were left in place. Remove them manually if you want a clean slate."

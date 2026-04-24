@@ -55,4 +55,22 @@ else
     echo "==> Vundle already installed (run 'vim +PluginInstall +qall' to refresh plugins)"
 fi
 
+# 6. oh-my-tmux. ~/.tmux.conf.local is symlinked from this repo by step 1
+#    above; here we clone the upstream oh-my-tmux and link ~/.tmux.conf to it.
+OH_MY_TMUX_DIR="$HOME/.tmux"
+if [ ! -d "$OH_MY_TMUX_DIR" ]; then
+    echo "==> Cloning oh-my-tmux into $OH_MY_TMUX_DIR"
+    git clone https://github.com/gpakosz/.tmux.git "$OH_MY_TMUX_DIR"
+else
+    echo "==> oh-my-tmux already at $OH_MY_TMUX_DIR (cd there and 'git pull' to update)"
+fi
+
+tmux_target="$HOME/.tmux.conf"
+if [ -e "$tmux_target" ] && [ ! -L "$tmux_target" ]; then
+    echo "  Backing up existing $tmux_target -> $tmux_target.bak"
+    mv "$tmux_target" "$tmux_target.bak"
+fi
+ln -sfn "$OH_MY_TMUX_DIR/.tmux.conf" "$tmux_target"
+echo "  linked $tmux_target -> $OH_MY_TMUX_DIR/.tmux.conf"
+
 echo "==> Done. Restart your shell to pick up changes."
