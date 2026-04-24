@@ -14,10 +14,12 @@ Two Claude sessions approaching the same problem from independent contexts often
 ## How to talk to the other Claude
 
 ```bash
-claude -p "<prompt>"
+claude -p --dangerously-skip-permissions "<prompt>"
 ```
 
-Each invocation is a fresh stateless session — there is no memory between rounds. Include the running summary of prior rounds in every prompt so the other side retains context. Prompts go out in English (better reasoning quality); the final writeup follows the user's language.
+Each invocation is a fresh stateless session — there is no memory between rounds. Include the running summary of prior rounds in every prompt so the other side retains context. `--dangerously-skip-permissions` suppresses the subprocess's interactive permission prompts so the debate runs autonomously; the sandbox remains in force. This is appropriate because the subagent is reasoning about a topic, not editing the filesystem.
+
+Prompts go out in English (better reasoning quality); the final writeup follows the user's language.
 
 ## Running the discussion
 

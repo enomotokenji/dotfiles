@@ -17,10 +17,12 @@ If unsure, start with ask-claude. Users can always escalate.
 ## How to talk to the other Claude
 
 ```bash
-claude -p "<prompt>"
+claude -p --dangerously-skip-permissions "<prompt>"
 ```
 
-Stateless — a single call, no session follow-up. Send the prompt in English (better reasoning quality); reply to the user in their language.
+Stateless — a single call, no session follow-up. `--dangerously-skip-permissions` suppresses the subprocess's interactive permission prompts so the consultation runs autonomously; the sandbox remains in force. This is appropriate here because the subagent is only answering a question, not editing the filesystem.
+
+Send the prompt in English (better reasoning quality); reply to the user in their language.
 
 ## Workflow
 
