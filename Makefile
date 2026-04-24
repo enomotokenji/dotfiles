@@ -10,12 +10,7 @@ all: deploy ## Run make deploy init
 
 deploy:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
-ifeq ($(UNAME), Darwin)
 	@mkdir -p ~/.vim/colors
-endif
-ifeq ($(UNAME), Linux)
-	@mkdir -p ~/.vim/colors
-endif
 	ln -sf ~/dotfiles/vim/colors/iceberg.vim ~/.vim/colors/iceberg.vim
 
 #init:

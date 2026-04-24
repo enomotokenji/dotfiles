@@ -1,5 +1,5 @@
 #!/bin/bash
-# Reference: https://gist.github.com/michiomochi/9743293
+set -e
 
 # Detect OS
 UNAME="$(uname)"
@@ -11,48 +11,47 @@ if [[ "$UNAME" == "Darwin" ]]; then
         echo "/bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
         exit 1
     fi
-    
+
     echo "Installing Vim on macOS via Homebrew..."
     brew install vim
-    
+
 elif [[ "$UNAME" == "Linux" ]]; then
-    # Linux: Build from source
+    # Linux: Build latest Vim from source
     echo "Installing Vim on Linux from source..."
-    
-    mkdir -p ~/.local/src
-    
-    # ---
-    # Install Lua
-    # ---
-    
-    cd ~/.local/src
-    wget http://www.lua.org/ftp/lua-5.2.3.tar.gz
-    tar xvf lua-5.2.3.tar.gz
-    cd ~/.local/src/lua-5.2.3
-    make linux MYLIBS="-L /home/vagrant/local/lib -ltermcap"
-    make install INSTALL_TOP=${HOME}/.local
-    
-    
-    # ---
-    # Install Vim
-    # ---
-    
-    cd ~/.local/src
-    wget http://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
-    tar xvf vim-7.4.tar.bz2
-    cd vim74
-    ./configure --prefix=${HOME}/.local --with-features=huge --enable-gui=gtk2 --enable-multibyte=yes --enable-python3interp=yes --enable-luainterp=yes --with-lua-prefix=${HOME}/.local
-    
+
+    # Required dev packages (Debian/Ubuntu):
+    #   sudo apt-get install -y git build-essential libncurses-dev \
+    #     liblua5.3-dev lua5.3 python3-dev libgtk-3-dev libxt-dev
+    # On other distros, install the equivalents before running this script.
+
+    SRC_DIR="$HOME/.local/src"
+    mkdir -p "$SRC_DIR"
+    cd "$SRC_DIR"
+
+    if [ -d "$SRC_DIR/vim" ]; then
+        echo "Updating existing vim source checkout..."
+        cd "$SRC_DIR/vim"
+        git pull
+    else
+        echo "Cloning vim source..."
+        git clone https://github.com/vim/vim.git "$SRC_DIR/vim"
+        cd "$SRC_DIR/vim"
+    fi
+
+    ./configure \
+        --prefix="$HOME/.local" \
+        --with-features=huge \
+        --enable-multibyte \
+        --enable-python3interp=yes \
+        --enable-luainterp=yes \
+        --enable-gui=gtk3
+
     make
     make install
-    
+
 else
     echo "Unsupported OS: $UNAME"
     exit 1
 fi
 
 echo "Vim installation completed for $UNAME"
-
-
-
-
