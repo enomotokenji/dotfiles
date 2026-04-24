@@ -20,18 +20,15 @@ filetype off
 nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle
+" => vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'mattn/vim-lsp-settings'
-Plugin 'lambdalisue/fern.vim'
-call vundle#end()
+call plug#begin('~/.vim/plugged')
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'mattn/vim-lsp-settings'
+Plug 'lambdalisue/fern.vim'
+call plug#end()
 
 filetype plugin indent on
 

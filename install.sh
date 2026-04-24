@@ -47,12 +47,18 @@ else
     echo "==> vim already available ($(command -v vim))"
 fi
 
-# 5. Vundle + plugins from .vimrc
-if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
-    echo "==> Installing Vundle and plugins"
-    bash "$DOTFILES_DIR/initfiles/install_vundle.sh"
+# 5. vim-plug + plugins from .vimrc
+PLUG_VIM="$HOME/.vim/autoload/plug.vim"
+if [ ! -f "$PLUG_VIM" ]; then
+    echo "==> Installing vim-plug"
+    curl -fLo "$PLUG_VIM" --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+if [ ! -d "$HOME/.vim/plugged" ] || [ -z "$(ls -A "$HOME/.vim/plugged" 2>/dev/null)" ]; then
+    echo "==> Installing vim plugins"
+    vim +PlugInstall +qall
 else
-    echo "==> Vundle already installed (run 'vim +PluginInstall +qall' to refresh plugins)"
+    echo "==> vim plugins already installed (use ./update.sh to refresh)"
 fi
 
 # 6. oh-my-tmux. ~/.tmux.conf.local is symlinked from this repo by step 1

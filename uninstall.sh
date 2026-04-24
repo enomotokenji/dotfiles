@@ -48,5 +48,6 @@ if [ -L "$tmux_target" ] && [ "$(readlink "$tmux_target")" = "$HOME/.tmux/.tmux.
 fi
 
 echo "==> Done."
-echo "    oh-my-zsh (~/.oh-my-zsh), oh-my-tmux (~/.tmux), vim, and ~/.vim/bundle"
-echo "    were left in place. Remove them manually if you want a clean slate."
+echo "    oh-my-zsh (~/.oh-my-zsh), oh-my-tmux (~/.tmux), vim, vim-plug"
+echo "    (~/.vim/autoload/plug.vim), and ~/.vim/plugged were left in place."
+echo "    Remove them manually if you want a clean slate."

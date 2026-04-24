@@ -11,7 +11,7 @@ cd ~/dotfiles
 ```
 
 `install.sh` symlinks the dotfiles into `$HOME`, then installs oh-my-zsh, vim,
-Vundle (with the plugins declared in `.vimrc`), and oh-my-tmux (cloned to
+vim-plug (with the plugins declared in `.vimrc`), and oh-my-tmux (cloned to
 `~/.tmux/`) if they are not already present. Any pre-existing regular file at
 a target path is backed up as `*.bak` before the symlink is created.
 Re-running is safe.
@@ -32,7 +32,7 @@ hand before running.
 
 Removes only the symlinks this repo created, and restores any `*.bak` backup
 taken at install time. `~/.oh-my-zsh`, `~/.tmux/` (oh-my-tmux clone), the vim
-binary, and `~/.vim/bundle` are left in place — remove them by hand if you
+binary, and `~/.vim/plugged` are left in place — remove them by hand if you
 want a clean slate.
 
 ## Supported OS
