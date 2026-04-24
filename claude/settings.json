@@ -1,0 +1,6 @@
+{
+  "model": "claude-opus-4-7",
+  "enabledPlugins": {
+    "skill-creator@claude-plugins-official": true
+  }
+}
